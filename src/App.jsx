@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import "./App.css";
+import { FaTimes, FaRegCircle } from "react-icons/fa";
 
 const winnigCombination = [
   [0, 1, 2],
@@ -18,15 +19,15 @@ const winnigCombination = [
 function App() {
   const [gameData, setGameData] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0]);
   const [turn, setTurn] = useState(1);
-  const [winnerCombo, setWinnerCombo] = useState(null)
+  const [winnerCombo, setWinnerCombo] = useState(null);
 
   const ClickedChange = (clickedIndex) => {
     if (gameData[clickedIndex] != 0) {
       return;
     }
 
-    if(winnerCombo) {
-      return
+    if (winnerCombo) {
+      return;
     }
 
     setGameData((prev) => {
@@ -39,21 +40,21 @@ function App() {
   };
 
   useEffect(() => {
+    checkGameEnded();
     checkikngWinner();
-    checkGameEnded()
   }, [gameData]);
 
   useEffect(() => {
-    if(winnerCombo) [
-      alert('houve um vencedor')
-    ]
-  }, [winnerCombo])
+    if (winnerCombo) {
+      alert("houve um vencedor");
+    }
+  }, [winnerCombo]);
 
   const checkGameEnded = () => {
-    if(gameData.every((item) => item != 0)) {
-      alert('jogo acabou, deu velha')
+    if (gameData.every((item) => item != 0)) {
+      alert("jogo acabou, deu velha");
     }
-  }
+  };
 
   const checkikngWinner = () => {
     console.log("checking Winner");
@@ -74,9 +75,9 @@ function App() {
       ) {
         winner = "player o";
       }
-      if (winner){
-        setWinnerCombo(values)
-        break
+      if (winner) {
+        setWinnerCombo(values);
+        break;
       }
     }
 
@@ -85,16 +86,30 @@ function App() {
 
   return (
     <>
+      <header className="header">
+        <h1>Tic Tac Toe</h1>
+        <h3>By: <span><a href="https://github.com/luizlfsr">Luiz Felipe</a></span></h3>
+      </header>
+      
+      <div className="turn">
+        <p>
+          <span>vez do jogador: </span> {turn === 1 && "x"}
+          {turn === 2 && "o"}
+        </p>
+      </div>
       <div className="board-game">
         {gameData.map((value, index) => (
           <span key={index} onClick={() => ClickedChange(index)}>
-            {value === 0 && "_"}
-            {value === 1 && "x"}
-            {value === 2 && "o"}
+            {value === 0 && `\u00a0`}
+            {value === 1 && <FaTimes />}
+            {value === 2 && <FaRegCircle />}
           </span>
         ))}
       </div>
-      <a href="/tic_tac_toe_react">resetar jogo</a>
+      <a href="/tic_tac_toe_react" className="reset_button">
+        resetar jogo
+      </a>
+      <span>&nbsp;</span>
     </>
   );
 }

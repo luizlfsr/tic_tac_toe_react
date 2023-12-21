@@ -1,3 +1,9 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
 body {
   display: flex;
   justify-content: center;
@@ -5,16 +11,48 @@ body {
   text-align: center;
 }
 
+.header {
+  display: flex;
+  justify-content: space-around;
+  align-items: baseline;
+  color: #fff;
+  margin-bottom: 20px;
+}
+
 .board-game {
+  margin: 20px 0;
   display: grid;
   grid-template-columns: repeat(3, 150px);
 }
 
 .board-game span {
   font-weight: bold;
-  padding: 60px;
+  padding: 24px;
   background-color: #222;
   color: #646cff;
-  font-size: 24px;
-  border: 1px solid #7b7b7b;
+  font-size: 60px;
+  border: 1px solid #111;
 }
+
+.turn {
+  padding: 12px;
+  border: 2px solid #111;
+  border-radius: 5px;
+  font-weight: bold;
+  color: #646cff;
+}
+
+.reset_button {
+  padding: 12px;
+  font-size: 1em;
+  font-weight: bold;
+  border-radius: 5px;
+  border: 1px solid #111;
+}
+
+.reset_button:hover {
+  border: 2px solid #595fdd;
+}
+
+
+
